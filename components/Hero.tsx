@@ -1,29 +1,68 @@
 // components/Hero.tsx
-import Image from "next/image";
+"use client"; // Ensure this is at the top for the scroll function
 
-export const Hero = () => {
+import Image from "next/image";
+import Link from "next/link";
+
+export function Hero() {
+  const scrollToRoadmap = () => {
+    // Looks for the element with the ID we will add to the Roadmap/Timeline
+    const element = document.getElementById("process-roadmap");
+    element?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <div className="h-[40rem] w-full rounded-md flex md:items-center md:justify-center bg-zinc-50 dark:bg-black/[0.96] antialiased bg-grid-black/[0.02] dark:bg-grid-white/[0.02] relative overflow-hidden transition-colors duration-300">
-      <div className="p-4 max-w-7xl mx-auto relative z-10 w-full pt-20 md:pt-0">
-        {/* <h1 className="text-4xl md:text-7xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-900 to-neutral-500 dark:from-neutral-50 dark:to-neutral-400 bg-opacity-50">
-          Build the Future <br /> faster than ever.
-        </h1> */}
-        <Image
-          src="../data/CongressBookers_template_word-02.png"
-          alt="CB Logo"
-          width={800}
-          height={600}
-        />
-        <p className="mt-4 font-normal text-base text-zinc-600 dark:text-neutral-300 max-w-lg text-center mx-auto">
-          A premium landing page template built with Aceternity UI and Hero UI components. 
-          Scalable, performant, and ready for Vercel deployment.
-        </p>
-        <div className="flex justify-center mt-10">
-            <button className="px-8 py-2 rounded-full bg-blue-600 dark:bg-gradient-to-b dark:from-blue-500 dark:to-blue-600 text-white focus:ring-2 focus:ring-blue-400 hover:shadow-xl transition duration-200">
-                Get Started
+    <section className="relative transition-colors duration-300">
+      <div className="h-[45rem] w-full flex items-center justify-center bg-white dark:bg-congress-navy antialiased relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid-congress-navy/[0.02] dark:bg-grid-white/[0.02] pointer-events-none" />
+        
+        <div className="p-4 max-w-7xl mx-auto relative z-10 w-full text-center">
+          {/* Logo and Quote ... same as before */}
+          <div className="relative mb-12 flex justify-center w-full">
+            <Image
+              src="/CongressBookers_template_word-02.png"
+              alt="CongressBookers Logo"
+              width={500}
+              height={160}
+              priority
+              className="transition-transform duration-500 hover:scale-105"
+            />
+          </div>
+
+          <p className="text-oxygen-blue font-medium tracking-[0.3em] uppercase text-xs mb-4">
+            "The orchestra plays — the dancers simply dance."
+          </p>
+
+          <h1 className="text-4xl md:text-7xl font-bold text-congress-navy dark:text-white mb-6 tracking-tight">
+            Seamless Logistics for <br />
+            <span className="text-oxygen-blue">Medical Pioneers</span>
+          </h1>
+
+          <p className="text-zinc-600 dark:text-blue-100/80 max-w-2xl mx-auto mb-10 text-lg">
+            We handle the complexities of congress travel, so you can focus on the science that changes lives.
+          </p>
+
+          <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
+            {/* Primary Button: External Link */}
+            <a 
+              href="https://congressbookers.com/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="bg-oxygen-blue hover:brightness-110 text-white px-10 py-4 rounded-full font-bold transition-all shadow-xl shadow-oxygen-blue/20 min-w-[220px] flex items-center justify-center"
+            >
+              Book Your Congress
+            </a>
+
+            {/* Secondary Button: Smooth Scroll */}
+            <button 
+              onClick={scrollToRoadmap}
+              className="border-2 border-congress-navy text-congress-navy dark:border-oxygen-blue dark:text-oxygen-blue px-10 py-4 rounded-full font-bold hover:bg-congress-navy hover:text-white dark:hover:bg-white/10 transition-all min-w-[220px]"
+            >
+              Our Full Circle Process
             </button>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
-};
+}

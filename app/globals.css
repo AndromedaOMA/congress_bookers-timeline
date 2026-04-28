@@ -3,24 +3,30 @@
 @theme {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  
+  /* Brand Colors from CongressBookers Logo */
+  --color-congress-navy: #002B49;
+  --color-oxygen-blue: #00A3E0;
+  --color-clinical-frost: #F8FAFC;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Base styles that respect our manual toggle */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Medical White / Clinical Frost */
+  --background: #FFFFFF; 
+  --foreground: #002B49; /* Deep Navy for readability */
 }
 
-/* When the .dark class is present on the html element */
 .dark {
-  --background: #0a0a0a;
-  --foreground: #ededed;
+  /* Congress Navy Background */
+  --background: #002B49;
+  --foreground: #F8FAFC;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }

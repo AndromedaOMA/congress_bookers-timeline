@@ -24,7 +24,8 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className="h-full antialiased">
-      <body className="min-h-full flex flex-col bg-white dark:bg-black transition-colors duration-300">
+      {/* Changed dark:bg-black to dark:bg-congress-navy */}
+      <body className="min-h-full flex flex-col bg-white dark:bg-congress-navy transition-colors duration-300">
         <ThemeProvider>
           <ThemeToggle />
           {children}
