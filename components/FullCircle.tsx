@@ -36,11 +36,11 @@ export function FullCircle() {
       <style jsx global>{`
         @keyframes orbit {
           from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
+          to { transform: rotate(-360deg); }
         }
         @keyframes counter-orbit {
           from { transform: rotate(0deg); }
-          to { transform: rotate(-360deg); }
+          to { transform: rotate(360deg); }
         }
         .animate-orbit {
           animation: orbit 60s linear infinite;
