@@ -1,4 +1,3 @@
-// components/FullCircle.tsx
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -16,10 +15,9 @@ export function FullCircle() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // We use a single effect to handle all client-side initialization
+    // Satisfy linter by keeping state updates in the effect but outside the direct render path
     const handleResize = () => setIsMobile(window.innerWidth < 768);
     
-    // Set initial values
     handleResize();
     setMounted(true);
 
@@ -27,16 +25,32 @@ export function FullCircle() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Return a placeholder or null during SSR to prevent hydration mismatch[cite: 4, 8]
   if (!mounted) return <div className="h-[400px]" />;
 
   const goldColor = "#C8A97E";
-  const radius = isMobile ? 120 : 180; // Responsive radius based on state
+  const radius = isMobile ? 120 : 180; 
 
   return (
     <section className="relative w-full bg-white dark:bg-congress-navy py-16 overflow-hidden border-t border-zinc-100 dark:border-zinc-800/50 transition-colors duration-300">
+      {/* CSS Animation Keyframes */}
+      <style jsx global>{`
+        @keyframes orbit {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        @keyframes counter-orbit {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(-360deg); }
+        }
+        .animate-orbit {
+          animation: orbit 60s linear infinite;
+        }
+        .animate-counter-orbit {
+          animation: counter-orbit 60s linear infinite;
+        }
+      `}</style>
+
       <div className="max-w-5xl mx-auto px-6 flex flex-col items-center">
-        
         <div className="text-center mb-10 md:mb-16 space-y-5">
           <h2 className="text-2xl md:text-5xl font-serif italic text-zinc-900 dark:text-white tracking-wide">
             The Orchestra has Left the Stage
@@ -47,7 +61,9 @@ export function FullCircle() {
           </p>
         </div>
 
-        <div className="relative w-full max-w-[320px] md:max-w-[500px] aspect-square flex items-center justify-center my-4">
+        {/* The rotating container */}
+        <div className="relative w-full max-w-[320px] md:max-w-[500px] aspect-square flex items-center justify-center my-4 animate-orbit">
+          
           <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="-250 -250 500 500">
             {nodes.map((_, i) => {
               const angle = (i * 360) / nodes.length - 90;
@@ -60,7 +76,8 @@ export function FullCircle() {
             })}
           </svg>
 
-          <div className="absolute w-16 h-16 md:w-24 md:h-24 rounded-full bg-white dark:bg-[#001524] border-2 border-[#C8A97E]/60 flex items-center justify-center z-10 shadow-lg p-2">
+          {/* Center icon stays static by being counter-rotated or placed outside the orbit div */}
+          <div className="absolute w-16 h-16 md:w-24 md:h-24 rounded-full bg-white dark:bg-[#001524] border-2 border-[#C8A97E]/60 flex items-center justify-center z-10 shadow-lg p-2 animate-counter-orbit">
             <div className="relative w-full h-full">
               <Image src="/CB_icon.PNG" alt="CongressBookers Icon" fill className="object-contain" />
             </div>
@@ -75,13 +92,19 @@ export function FullCircle() {
             return (
               <div 
                 key={node} 
-                className="absolute flex items-center justify-center z-20 transition-transform duration-300"
+                className="absolute flex items-center justify-center z-20"
                 style={{ transform: `translate(${x}px, ${y}px)` }}
               >
-                <div className="bg-white dark:bg-[#001524] border border-[#C8A97E]/40 rounded-full px-2 py-1 md:px-3 md:py-1.5 whitespace-nowrap shadow-sm scale-90 md:scale-100">
-                  <span className="text-zinc-700 dark:text-[#C8A97E] text-[8px] md:text-[10px] font-semibold tracking-wider uppercase">
-                    {node}
-                  </span>
+                {/* 
+                  We apply the scale-up on hover here, while the inner div 
+                  handles the counter-rotation to keep text readable 
+                */}
+                <div className="transition-transform duration-300 hover:scale-110 cursor-default animate-counter-orbit">
+                  <div className="bg-white dark:bg-[#001524] border border-[#C8A97E]/40 rounded-full px-2 py-1 md:px-3 md:py-1.5 whitespace-nowrap shadow-sm scale-90 md:scale-100">
+                    <span className="text-zinc-700 dark:text-[#C8A97E] text-[8px] md:text-[10px] font-semibold tracking-wider uppercase">
+                      {node}
+                    </span>
+                  </div>
                 </div>
               </div>
             );
