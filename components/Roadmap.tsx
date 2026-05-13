@@ -12,12 +12,12 @@ import {
 export function Roadmap() {
   const data = [
     {
-      id: "phase-01",
-      title: "Phase 01: The Score is Written",
+      id: "day-01",
+      title: "Day 01: The Journey Begins at Your Door",
       category: "Pre-Departure",
       icon: <Briefcase size={18} />,
       clientText: "Dr. Moreau closes her briefcase. The congress is tomorrow. She has one thought: her presentation. Everything else, she trusts, is taken care of.",
-      backstageTitle: "Logistics Pre-Filed",
+      backstageTitle: "The Score is Already Written",
       backstageItems: [
         "Transfer confirmed and driver briefed.",
         "Flight seat reserved with zero connections.",
@@ -26,8 +26,8 @@ export function Roadmap() {
       backstageIcon: <ShieldCheck size={40} />
     },
     {
-      id: "phase-02",
-      title: "Phase 02: Wheels Down. Welcome.",
+      id: "day-02",
+      title: "Day 02: Wheels Down. Welcome.",
       category: "Seamless Arrival",
       icon: <PlaneLanding size={18} />,
       clientText: "The seatbelt sign goes off. She knows exactly who is waiting. She doesn't search for a board. She simply walks and is found.",
@@ -39,8 +39,8 @@ export function Roadmap() {
       ]
     },
     {
-      id: "phase-03",
-      title: "Phase 03: Where Medicine Moves Forward",
+      id: "day-03",
+      title: "Day 03: Where Medicine Moves Forward",
       category: "The Congress",
       icon: <Mic size={18} />,
       clientText: "The hall opens. Her badge is pre-printed. Keynotes. Workshops. Debates. Every logistical thought has been lifted so she can focus on ideas.",
@@ -52,8 +52,8 @@ export function Roadmap() {
       ]
     },
     {
-      id: "phase-04",
-      title: "Phase 04: Evenings Worth Remembering",
+      id: "day-04",
+      title: "Day 04: Evenings Worth Remembering",
       category: "Beyond Sessions",
       icon: <UtensilsCrossed size={18} />,
       clientText: "A rooftop restaurant. The team arrives together, relaxed. She didn't book the table or the satellite symposium room. She didn't need to.",
@@ -65,8 +65,8 @@ export function Roadmap() {
       ]
     },
     {
-      id: "phase-05",
-      title: "Phase 05: Closing the Circle",
+      id: "day-05",
+      title: "Day 05: Closing the Circle",
       category: "Mission Complete",
       icon: <RefreshCcw size={18} />,
       clientText: "Luggage collected before breakfast. Four days. One seamless performance. The science was exceptional, and she flies home with memories.",
