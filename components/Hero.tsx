@@ -45,14 +45,15 @@ export function Hero() {
               href="https://congressbookers.com/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="w-full sm:w-auto bg-oxygen-blue hover:brightness-110 text-white px-10 py-4 rounded-full font-bold transition-all shadow-xl shadow-oxygen-blue/20 min-w-[220px] flex items-center justify-center"
+              className="group w-full sm:w-auto bg-oxygen-blue hover:brightness-110 text-white px-10 py-4 rounded-full font-bold transition-all active:scale-95 shadow-xl shadow-oxygen-blue/20 min-w-[220px] flex items-center justify-center gap-2"
             >
               Book Your Congress
+              <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
             </a>
 
             <button 
               onClick={scrollToRoadmap}
-              className="w-full sm:w-auto border-2 border-congress-navy text-congress-navy dark:border-oxygen-blue dark:text-oxygen-blue px-10 py-4 rounded-full font-bold hover:bg-congress-navy hover:text-white dark:hover:bg-white/10 transition-all min-w-[220px]"
+              className="w-full sm:w-auto border-2 border-congress-navy text-congress-navy dark:border-oxygen-blue dark:text-oxygen-blue px-10 py-4 rounded-full font-bold hover:bg-congress-navy hover:text-white dark:hover:bg-white/10 transition-all active:scale-95 min-w-[220px]"
             >
               Our Full Circle Process
             </button>

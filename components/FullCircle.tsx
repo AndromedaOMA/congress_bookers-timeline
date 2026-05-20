@@ -99,7 +99,7 @@ export function FullCircle() {
                   We apply the scale-up on hover here, while the inner div 
                   handles the counter-rotation to keep text readable 
                 */}
-                <div className="transition-transform duration-300 hover:scale-110 cursor-default animate-counter-orbit">
+                <div className="transition-transform duration-300 cursor-default animate-counter-orbit">
                   <div className="bg-white dark:bg-[#001524] border border-[#C8A97E]/40 rounded-full px-2 py-1 md:px-3 md:py-1.5 whitespace-nowrap shadow-sm scale-90 md:scale-100">
                     <span className="text-zinc-700 dark:text-[#C8A97E] text-[8px] md:text-[10px] font-semibold tracking-wider uppercase">
                       {node}
