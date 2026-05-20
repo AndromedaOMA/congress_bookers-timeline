@@ -52,14 +52,16 @@ export const Timeline = ({ data, onComplete }: { data: TimelineEntry[], onComple
         onComplete?.();
       }
       
-      setTimeout(() => {
-        window.scrollBy({
-          top: 350,
-          behavior: "smooth"
-        });
-      }, 100);
-    }
-  };
+    setTimeout(() => {
+      // Calculate scroll dynamically: 75% of screen height on mobile, 350px on desktop
+      const scrollAmount = window.innerWidth < 768 ? window.innerHeight * 0.75 : 350;
+      window.scrollBy({
+        top: scrollAmount,
+        behavior: "smooth"
+      });
+    }, 100);
+  }
+};
 
   return (
     <div className="w-full bg-white dark:bg-congress-navy font-sans" ref={containerRef}>
@@ -171,7 +173,7 @@ export const Timeline = ({ data, onComplete }: { data: TimelineEntry[], onComple
           )}
         </AnimatePresence>
 
-        <div style={{ height: height + "px" }} className="absolute left-[35px] md:left-1/2 md:-translate-x-1/2 top-0 overflow-hidden w-[2px] bg-zinc-100 dark:bg-zinc-800/50">
+        <div style={{ height: height + "px" }} className="absolute left-[36px] md:left-1/2 md:-translate-x-1/2 top-0 overflow-hidden w-[2px] bg-zinc-100 dark:bg-zinc-800/50">
           <motion.div style={{ height: heightTransform, opacity: opacityTransform }} className="absolute inset-x-0 top-0 w-[2px] bg-gradient-to-b from-oxygen-blue via-blue-400 to-transparent rounded-full" />
         </div>
       </div>

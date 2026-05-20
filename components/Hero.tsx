@@ -12,9 +12,7 @@ export function Hero() {
 
   return (
     <section className="relative transition-colors duration-300">
-      <div className="min-h-[40rem] md:h-[45rem] w-full flex items-center justify-center bg-white dark:bg-congress-navy antialiased relative overflow-hidden py-20">
-        <div className="absolute inset-0 bg-grid-congress-navy/[0.02] dark:bg-grid-white/[0.02] pointer-events-none" />
-        
+      <div className="min-h-[100dvh] md:min-h-[45rem] w-full flex items-center justify-center bg-white dark:bg-congress-navy antialiased relative overflow-hidden py-12 md:py-20">        <div className="absolute inset-0 bg-grid-congress-navy/[0.02] dark:bg-grid-white/[0.02] pointer-events-none" />
         <div className="p-4 max-w-7xl mx-auto relative z-10 w-full text-center">
           <div className="relative mb-8 md:mb-12 flex justify-center w-full px-6">
             <Image

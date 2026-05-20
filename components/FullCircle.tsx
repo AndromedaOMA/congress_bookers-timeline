@@ -28,7 +28,7 @@ export function FullCircle() {
   if (!mounted) return <div className="h-[400px]" />;
 
   const goldColor = "#C8A97E";
-  const radius = isMobile ? 120 : 180; 
+  const radius = isMobile ? 135 : 180; 
 
   return (
     <section className="relative w-full bg-white dark:bg-congress-navy py-16 overflow-hidden border-t border-zinc-100 dark:border-zinc-800/50 transition-colors duration-300">
@@ -100,8 +100,8 @@ export function FullCircle() {
                   handles the counter-rotation to keep text readable 
                 */}
                 <div className="transition-transform duration-300 cursor-default animate-counter-orbit">
-                  <div className="bg-white dark:bg-[#001524] border border-[#C8A97E]/40 rounded-full px-2 py-1 md:px-3 md:py-1.5 whitespace-nowrap shadow-sm scale-90 md:scale-100">
-                    <span className="text-zinc-700 dark:text-[#C8A97E] text-[8px] md:text-[10px] font-semibold tracking-wider uppercase">
+                  <div className="bg-white dark:bg-[#001524] border border-[#C8A97E]/40 rounded-full px-1.5 py-1 md:px-3 md:py-1.5 whitespace-nowrap shadow-sm scale-90 md:scale-100">
+                    <span className="text-zinc-700 dark:text-[#C8A97E] text-[7px] md:text-[10px] font-semibold tracking-wider uppercase">
                       {node}
                     </span>
                   </div>
