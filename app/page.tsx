@@ -1,7 +1,6 @@
 // page.tsx
 import { Hero } from "@/components/Hero";
 import { Roadmap } from "@/components/Roadmap";
-import { FullCircle } from "@/components/FullCircle";
 import { Curtain } from "@/components/Curtain";
 
 export default function Home() {
@@ -13,12 +12,9 @@ export default function Home() {
       <main className="min-h-screen">
         <Hero />
         
-        <section id="roadmap" className="py-20">
+        <section id="roadmap" className="pt-20">
           <Roadmap />
         </section>
-
-        {/* The new Full Circle ending section */}
-        <FullCircle />
       </main>
     </div>
   );

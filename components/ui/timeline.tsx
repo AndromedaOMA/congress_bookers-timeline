@@ -14,13 +14,13 @@ interface TimelineEntry {
   isFinal?: boolean;
 }
 
-export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
+// 1. Add onComplete to the props
+export const Timeline = ({ data, onComplete }: { data: TimelineEntry[], onComplete?: () => void }) => {
   const ref = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState(0);
-  const [visibleCount, setVisibleCount] = useState(1); // Start by showing only Day 1
+  const [visibleCount, setVisibleCount] = useState(1);
 
-  // Use ResizeObserver to dynamically track height as new days are added
   useEffect(() => {
     if (!ref.current) return;
     
@@ -44,9 +44,14 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
 
   const handleNextDay = () => {
     if (visibleCount < data.length) {
-      setVisibleCount((prev) => prev + 1);
+      const nextCount = visibleCount + 1;
+      setVisibleCount(nextCount);
       
-      // Smoothly scroll down slightly to focus on the newly added item
+      // 2. Trigger the callback when the final day is revealed
+      if (nextCount === data.length) {
+        onComplete?.();
+      }
+      
       setTimeout(() => {
         window.scrollBy({
           top: 350,
@@ -69,7 +74,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
 
       <div ref={ref} className="relative max-w-7xl mx-auto pb-20">
         <AnimatePresence initial={false}>
-          {data.slice(0, visibleCount).map((item, index) => (
+          {data.slice(0, visibleCount).map((item) => (
             <motion.div 
               key={item.id} 
               initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
@@ -77,7 +82,6 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-col md:grid md:grid-cols-9 gap-4 w-full items-start mb-16 md:mb-32 px-4 md:px-0 relative z-10"
             >
-              
               {/* MOBILE ONLY: Title & Category */}
               <div className="md:hidden pl-12 mb-4">
                  <h3 className="text-xl font-bold text-zinc-900 dark:text-white">{item.title}</h3>
@@ -110,7 +114,6 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
 
               {/* RIGHT SIDE: Combined Content for Mobile / Backstage for Desktop */}
               <div className="pl-12 md:pl-12 md:col-span-4 flex flex-col gap-6 justify-start text-left">
-                 {/* Mobile-only client text */}
                  <p className="md:hidden text-zinc-600 dark:text-neutral-400 text-sm italic">
                    &quot;{item.clientText}&quot;
                  </p>
@@ -162,14 +165,12 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                   </svg>
                 </span>
-                {/* Hover Fill Effect */}
                 <div className="absolute inset-0 bg-oxygen-blue/10 dark:bg-oxygen-blue/20 transform scale-y-0 group-hover:scale-y-100 transition-transform origin-bottom duration-300" />
               </button>
             </motion.div>
           )}
         </AnimatePresence>
 
-        {/* Progress Line */}
         <div style={{ height: height + "px" }} className="absolute left-[35px] md:left-1/2 md:-translate-x-1/2 top-0 overflow-hidden w-[2px] bg-zinc-100 dark:bg-zinc-800/50">
           <motion.div style={{ height: heightTransform, opacity: opacityTransform }} className="absolute inset-x-0 top-0 w-[2px] bg-gradient-to-b from-oxygen-blue via-blue-400 to-transparent rounded-full" />
         </div>
